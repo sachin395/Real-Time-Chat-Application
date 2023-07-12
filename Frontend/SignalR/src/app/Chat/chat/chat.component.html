@@ -1,0 +1,26 @@
+<div class="ud-header" >
+  <h2 class="text-center">Public Chat</h2>
+</div>
+
+<div class="ud-body" #pdfContent >
+  <div class="msg-box">
+    <ul>
+      <div *ngFor="let item of msgArr">
+        {{item.user}}<br>
+        <span class="msg-italic-style">{{item.msgText}}  </span><br>
+        {{item.Date|date:'yy/mm/dd/ HH:mm:ss'}}
+      </div>
+      <li *ngFor="let mObj of msgInboxArray" [ngClass]="mObj.user === msgDto.user ? 'in-msg' : 'ex-msg'">{{mObj.user}} :<br /><span class="msg-italic-style">{{mObj.msgText}}  </span>
+     <br /><span class="showdate">{{mObj.Date|date:'dd/mm/yy HH:mm:ss'}} </span></li>
+    </ul>
+  </div>
+  <div class="ud-flex-row">
+    <input type="text" placeholder="Type message here" class="msg-input" [(ngModel)]="msgDto.msgText"  />
+    <button class="send-btn" (click)= "send()"><i class="fa fa-paper-plane"></i></button>
+  </div>
+  <input type="text" placeholder="Your name" class="name-box" [(ngModel)]="msgDto.user" />
+  <!-- <div>
+    <button (click)="generatePDF()">Generate PDF</button>
+  </div>  -->
+</div>
+
